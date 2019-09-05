@@ -18,3 +18,27 @@
 
      document.body.appendChild(myBlock);
  })
+
+ function goLeft() {
+     let temp = myBlock.offsetLeft;
+     temp = temp - 50;
+     myBlock.style.left = temp + "px";
+ }
+
+ function goRight() {
+     let temp = myBlock.offsetLeft;
+     temp = temp + 50;
+     myBlock.style.left = temp + "px";
+ }
+
+ function goUp() {
+    let temp = myBlock.offsetLeft;
+    temp = temp - 50;
+    myBlock.style.top = temp + "px";
+}
+
+function goDown() {
+    let temp = myBlock.offsetLeft;
+    temp = temp + 50;
+    myBlock.style.top = temp + "px";
+}
