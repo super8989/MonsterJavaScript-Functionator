@@ -1,7 +1,6 @@
  let myBlock;
 
  document.addEventListener("DOMContentLoaded", function() {
-     console.log('ready');
 
      myBlock = document.createElement("div");
      myBlock.textContent = "hello world";
@@ -9,7 +8,6 @@
      myBlock.style.height = "100px";
      myBlock.style.backgroundColor = "red";
      myBlock.style.color = "white";
-
      myBlock.style.lineHeight = "100px";
      myBlock.style.textAlign = "center";
      myBlock.style.position = "absolute";
@@ -18,6 +16,23 @@
 
      document.body.appendChild(myBlock);
  })
+
+    document.addEventListener("keydown", function(e) {
+        e.preventDefault();
+
+        let keyC = e.keyCode;
+
+        if (keyC === 37) {
+            goLeft();
+        } else if (keyC === 39) { 
+            goRight();
+        } else if (keyC === 38) {
+            goUp();
+        } else if (keyC === 40) { 
+            goDown();
+        }    
+        console.log(e.keyCode);
+    })
 
  function goLeft() {
      let temp = myBlock.offsetLeft;
@@ -32,13 +47,13 @@
  }
 
  function goUp() {
-    let temp = myBlock.offsetLeft;
+    let temp = myBlock.offsetTop;
     temp = temp - 50;
     myBlock.style.top = temp + "px";
 }
 
 function goDown() {
-    let temp = myBlock.offsetLeft;
+    let temp = myBlock.offsetTop;
     temp = temp + 50;
     myBlock.style.top = temp + "px";
 }
