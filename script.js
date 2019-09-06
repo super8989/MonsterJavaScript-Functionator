@@ -1,6 +1,6 @@
  let myBlock;
 
- document.addEventListener("DOMContentLoaded", function() {
+ document.addEventListener("DOMContentLoaded", function () {
 
      myBlock = document.createElement("div");
      myBlock.textContent = "hello world";
@@ -17,22 +17,28 @@
      document.body.appendChild(myBlock);
  })
 
-    document.addEventListener("keydown", function(e) {
-        e.preventDefault();
+ document.addEventListener("keydown", function (e) {
+     e.preventDefault();
 
-        let keyC = e.keyCode;
+     let keyC = e.keyCode;
 
-        if (keyC === 37) {
-            goLeft();
-        } else if (keyC === 39) { 
-            goRight();
-        } else if (keyC === 38) {
-            goUp();
-        } else if (keyC === 40) { 
-            goDown();
-        }    
-        console.log(e.keyCode);
-    })
+     if (keyC === 37) {
+         goLeft();
+     } else if (keyC === 39) {
+         goRight();
+     } else if (keyC === 38) {
+         goUp();
+     } else if (keyC === 40) {
+         goDown();
+     } else if (keyC === 67) {
+         myBlock.style.backgroundColor = randomColor();
+     }
+     console.log(e.keyCode);
+ })
+
+ function randomColor() {
+     return "#" + Math.random().toString(16).substr(-6);
+ }
 
  function goLeft() {
      let temp = myBlock.offsetLeft;
@@ -47,13 +53,13 @@
  }
 
  function goUp() {
-    let temp = myBlock.offsetTop;
-    temp = temp - 50;
-    myBlock.style.top = temp + "px";
-}
+     let temp = myBlock.offsetTop;
+     temp = temp - 50;
+     myBlock.style.top = temp + "px";
+ }
 
-function goDown() {
-    let temp = myBlock.offsetTop;
-    temp = temp + 50;
-    myBlock.style.top = temp + "px";
-}
+ function goDown() {
+     let temp = myBlock.offsetTop;
+     temp = temp + 50;
+     myBlock.style.top = temp + "px";
+ }
