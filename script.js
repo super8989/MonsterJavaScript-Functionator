@@ -1,4 +1,6 @@
  let myBlock;
+ let myFunctionList;
+ let funList = [];
 
  document.addEventListener("DOMContentLoaded", function () {
 
@@ -15,6 +17,9 @@
      myBlock.style.left = "150px";
 
      document.body.appendChild(myBlock);
+
+     myFunctionList = document.createElement("div");
+     document.body.appendChild(myFunctionList);
  })
 
  document.addEventListener("keydown", function (e) {
@@ -23,18 +28,49 @@
      let keyC = e.keyCode;
 
      if (keyC === 37) {
-         goLeft();
+         addFun("left");
      } else if (keyC === 39) {
-         goRight();
+         addFun("right");
      } else if (keyC === 38) {
-         goUp();
+         addFun("up");
      } else if (keyC === 40) {
-         goDown();
+         addFun("down");
      } else if (keyC === 67) {
          myBlock.style.backgroundColor = randomColor();
      }
+
+     /* switch (keyC) {
+         case 37:
+             goLeft();
+             break;
+         case 38:
+             goUp();
+             break;
+     } */
+
      console.log(e.keyCode);
  })
+
+ function addFun(val) {
+    funList.push(val);
+
+    let span = document.createElement("span");
+    span.textContent = "+" + val;
+    span.style.padding = "10px";
+    span.style.border = "1px solid #ddd";
+    span.addEventListener("mouseover", function() {
+        this.style.backgroundColor = "red";
+        this.style.color = "white";
+    })
+    span.addEventListener("mouseout", function() {
+        this.style.backgroundColor = "white";
+        this.style.color = "black";
+    })
+
+    myFunctionList.appendChild(span);
+
+    console.log(funList);
+ }
 
  function randomColor() {
      return "#" + Math.random().toString(16).substr(-6);
