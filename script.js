@@ -1,6 +1,7 @@
  let myBlock;
  let myFunctionList;
  let funList = [];
+ const movementArray = ['right', 'left', 'up', 'down']
 
  document.addEventListener("DOMContentLoaded", function () {
 
@@ -39,6 +40,9 @@
          myBlock.style.backgroundColor = randomColor();
      } else if (keyC === 13 || keyC === 32) {
          mover();
+     } else if (keyC === 82) {
+         let temp = movementArray[Math.floor(Math.random() * movementArray.length)];
+         addFun(temp);
      }
 
      /* switch (keyC) {
@@ -101,6 +105,9 @@
          }
 
          setTimeout(mover, 300);
+     } else {
+         myBlock.innerHTML = "Set Path";
+         return;
      }
  }
 
