@@ -37,6 +37,8 @@
          addFun("down");
      } else if (keyC === 67) {
          myBlock.style.backgroundColor = randomColor();
+     } else if (keyC === 13 || keyC === 32) {
+         mover();
      }
 
      /* switch (keyC) {
@@ -51,25 +53,55 @@
      console.log(e.keyCode);
  })
 
+
+
  function addFun(val) {
-    funList.push(val);
 
-    let span = document.createElement("span");
-    span.textContent = "+" + val;
-    span.style.padding = "10px";
-    span.style.border = "1px solid #ddd";
-    span.addEventListener("mouseover", function() {
-        this.style.backgroundColor = "red";
-        this.style.color = "white";
-    })
-    span.addEventListener("mouseout", function() {
-        this.style.backgroundColor = "white";
-        this.style.color = "black";
-    })
+     let span = document.createElement("span");
+     span.textContent = "+" + val;
+     span.style.padding = "10px";
+     span.style.border = "1px solid #ddd";
+     span.addEventListener("mouseover", function () {
+         this.style.backgroundColor = "red";
+         this.style.color = "white";
+     })
+     span.addEventListener("mouseout", function () {
+         this.style.backgroundColor = "white";
+         this.style.color = "black";
+     })
 
-    myFunctionList.appendChild(span);
+     myFunctionList.appendChild(span);
+     funList.push(span);
 
-    console.log(funList);
+     console.log(span);
+
+     console.log(funList);
+ }
+
+ function mover() {
+     if (funList.length > 0) {
+         let cur = myBlock.getBoundingClientRect();
+         let el = funList.shift();
+         let item = el.textContent.replace("+", "");
+
+         myFunctionList.removeChild(el);
+         myBlock.innerHTML = "Move:" + item;
+
+         if (item == "left") {
+             myBlock.style.left = cur.left - cur.width + "px";
+         }
+         if (item == "right") {
+             myBlock.style.left = cur.left + cur.width + "px";
+         }
+         if (item == "up") {
+             myBlock.style.top = cur.top - cur.height + "px";
+         }
+         if (item == "down") {
+             myBlock.style.top = cur.top + cur.height + "px";
+         }
+
+         setTimeout(mover, 300);
+     }
  }
 
  function randomColor() {
